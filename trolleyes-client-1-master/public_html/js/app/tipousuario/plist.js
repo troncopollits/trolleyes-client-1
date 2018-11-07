@@ -4,12 +4,11 @@ moduleTipousuario.controller('tipousuarioPlistController', ['$scope', '$http', '
         function ($scope, $http, $location, toolService) {
             //$scope.ruta = $location.path();
 
-      
-         
                 $http({
                     method: 'GET',
                     //withCredentials: true,
-                    url: 'http://localhost:8081/trolleyes/json?ob=tipousuario&op=getpage&rpp=10&page=1'
+                    //url: 'http://localhost:8081/trolleyes/json?ob=tipousuario&op=getpage&rpp=10&page=1'
+                    url: 'http://localhost:8080/trolleyes/json?ob=tipousuario&op=get&id=1'
                 }).then(function (response) {
                     $scope.status = response.status;
                     $scope.ajaxDataUsuarios = response.data.message;

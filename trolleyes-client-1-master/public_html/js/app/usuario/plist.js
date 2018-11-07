@@ -3,6 +3,7 @@
 moduleUsuario.controller('usuarioPlistController', ['$scope', '$http', '$location', 'toolService', '$routeParams',
     function ($scope, $http, $location, toolService, $routeParams) {
         $scope.totalPages = 1;
+        /*If para controlar la paginacion*/
         if (!$routeParams.rpp) {
             $scope.rpp = 10;
         } else {
@@ -20,7 +21,7 @@ moduleUsuario.controller('usuarioPlistController', ['$scope', '$http', '$locatio
         }
         $http({
             method: 'GET',
-            url: 'http://localhost:8081/trolleyes/json?ob=usuario&op=getcount'
+            url: 'http://localhost:8080/trolleyes/json?ob=usuario&op=getcount'
         }).then(function (response) {
             $scope.status = response.status;
             $scope.ajaxDataUsuariosNumber = response.data.message;
@@ -28,6 +29,7 @@ moduleUsuario.controller('usuarioPlistController', ['$scope', '$http', '$locatio
             $scope.list = [];
             for (var i = 1; i <= $scope.totalPages; i++) {
                 $scope.list.push(i);
+                
             }
         }, function (response) {
             $scope.ajaxDataUsuariosNumber = response.data.message || 'Request failed';
@@ -36,7 +38,7 @@ moduleUsuario.controller('usuarioPlistController', ['$scope', '$http', '$locatio
 
         $http({
             method: 'GET',
-            url: 'http://localhost:8081/trolleyes/json?ob=usuario&op=getpage&rpp=' + $scope.rpp + '&page=' + $scope.page
+            url: 'http://localhost:8080/trolleyes/json?ob=usuario&op=getpage&rpp=' + $scope.rpp + '&page=' + $scope.page
         }).then(function (response) {
             $scope.status = response.status;
             $scope.ajaxDataUsuarios = response.data.message;
